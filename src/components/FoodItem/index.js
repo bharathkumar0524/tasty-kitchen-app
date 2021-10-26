@@ -7,34 +7,49 @@ import {FaRupeeSign} from 'react-icons/fa'
 class FoodItem extends Component {
   state = {quantity: 0}
 
-  deleteCartItem = id => {
-    const {cartList} = this.state
-    const updatedCartList = cartList.filter(
-      eachCartItem => eachCartItem.id !== id,
-    )
-    this.setState({cartList: updatedCartList})
+  componentDidMount() {
+    const {foodItemDetails, cartList} = this.props
+    cartList.map(eachCartItem => {
+      if (foodItemDetails.id === eachCartItem.id) {
+        return this.setState({quantity: eachCartItem.quantity})
+      }
+      return 0
+    })
   }
 
   onClickAddToCart = () => {
-    const {addCartItem, foodItemDetails, quantity} = this.props
-    this.setState(prevState => ({
-      quantity: prevState.quantity + 1,
-    }))
-    addCartItem({...foodItemDetails, quantity})
+    const {addCartItem, foodItemDetails} = this.props
+    const {quantity} = this.state
+    if (quantity === 0) {
+      this.setState(prevState => ({
+        quantity: prevState.quantity + 1,
+      }))
+    }
+    addCartItem({...foodItemDetails, quantity: quantity + 1})
   }
 
   onAddQuantity = () => {
-    this.setState(prevState => ({
-      quantity: prevState.quantity + 1,
-    }))
+    const {addCartItem, foodItemDetails} = this.props
+    const {quantity} = this.state
+    this.setState(
+      prevState => ({
+        quantity: prevState.quantity + 1,
+      }),
+      addCartItem({...foodItemDetails, quantity: quantity + 1}),
+    )
   }
 
   onDecreaseQuantity = () => {
+    const {addCartItem, foodItemDetails, deleteCartItem} = this.props
+    const {id} = foodItemDetails
     const {quantity} = this.state
     if (quantity > 1) {
-      this.setState(prevState => ({quantity: prevState.quantity - 1}))
+      this.setState(
+        prevState => ({quantity: prevState.quantity - 1}),
+        addCartItem({...foodItemDetails, quantity: quantity - 1}),
+      )
     } else {
-      this.setState({quantity: 0})
+      this.setState({quantity: 0}, deleteCartItem(id))
     }
   }
 
@@ -50,7 +65,7 @@ class FoodItem extends Component {
           <h1 className="food-name">{name}</h1>
           <div className="cost-container">
             <FaRupeeSign />
-            <p className="food-cost">{cost}.00</p>
+            <p className="food-cost">{cost}</p>
           </div>
           <div className="rating-container">
             <ImStarFull className="star" />

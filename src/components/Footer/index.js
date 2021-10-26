@@ -19,9 +19,7 @@ const Footer = () => (
     </div>
 
     <p className="footer-description">
-      The only thing we are serious about is food.
-      <br />
-      Contact us on
+      The only thing we are serious about is food. <br /> Contact us on
     </p>
 
     <div className="footer-social-media-icons">

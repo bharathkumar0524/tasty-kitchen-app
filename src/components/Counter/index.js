@@ -4,13 +4,28 @@ import './index.css'
 
 class Counter extends Component {
   render() {
+    const {quantity, onDecrement, onIncrement} = this.props
     return (
-      <div>
-        <button type="button" onClick={this.onDecrement}>
+      <div className="counter-container">
+        <button
+          type="button"
+          onClick={onDecrement}
+          testid="decrement-quantity"
+          className="quantity-controller-button"
+        >
           -
         </button>
-        <div>0</div>
-        <button type="button" onClick={this.onIncrement}>
+        <div>
+          <p testid="item-quantity" className="cart-quantity">
+            {quantity}
+          </p>
+        </div>
+        <button
+          type="button"
+          onClick={onIncrement}
+          testid="increment-quantity"
+          className="quantity-controller-button"
+        >
           +
         </button>
       </div>

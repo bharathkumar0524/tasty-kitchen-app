@@ -84,7 +84,6 @@ class RestaurantDetails extends Component {
         cartList: prevState.cartList.map(eachCartItem => {
           if (foodObject.id === eachCartItem.id) {
             const updatedQuantity = foodItem.quantity
-
             return {...eachCartItem, quantity: updatedQuantity}
           }
 
@@ -105,39 +104,9 @@ class RestaurantDetails extends Component {
     this.setState({cartList: updatedCartList})
   }
 
-  addQuantity = id => {
-    this.setState(prevState => ({
-      cartList: prevState.cartList.map(eachCartItem => {
-        if (id === eachCartItem.id) {
-          const updatedQuantity = eachCartItem.quantity + 1
-          return {...eachCartItem, quantity: updatedQuantity}
-        }
-        return eachCartItem
-      }),
-    }))
-  }
-
-  decreaseQuantity = id => {
-    const {cartList} = this.state
-    const productObject = cartList.find(eachCartItem => eachCartItem.id === id)
-    if (productObject.quantity > 1) {
-      this.setState(prevState => ({
-        cartList: prevState.cartList.map(eachCartItem => {
-          if (id === eachCartItem.id) {
-            const updatedQuantity = eachCartItem.quantity - 1
-            return {...eachCartItem, quantity: updatedQuantity}
-          }
-          return eachCartItem
-        }),
-      }))
-    } else {
-      this.deleteCartItem(id)
-    }
-  }
-
   renderLoadingView = () => (
     <div
-      testid="restaurants-details-loader"
+      testid="restaurant-details-loader"
       className="restaurants-details-loader"
     >
       <Loader type="TailSpin" color="#F7931E" height={50} width={50} />
@@ -202,6 +171,7 @@ class RestaurantDetails extends Component {
                 key={eachFoodItem.id}
                 addCartItem={this.addCartItem}
                 deleteCartItem={this.deleteCartItem}
+                cartList={cartList}
               />
             ))}
           </ul>
@@ -214,7 +184,7 @@ class RestaurantDetails extends Component {
     const {isLoading} = this.state
     return (
       <>
-        <Header />
+        <Header isCartActive="false" isHomeActive="true" />
         {isLoading ? this.renderLoadingView() : this.renderRestaurantDetails()}
         <Footer />
       </>
