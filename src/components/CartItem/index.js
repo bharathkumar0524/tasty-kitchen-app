@@ -7,7 +7,6 @@ const CartItem = props => {
   const {cartItemDetails, addQuantity, decreaseQuantity, deleteCartItem} = props
   // console.log(cartItemDetails)
   const {id, name, quantity, cost, imageUrl} = cartItemDetails
-  const totalCost = cost * quantity
 
   const onIncrement = () => {
     addQuantity(id)
@@ -30,9 +29,12 @@ const CartItem = props => {
           quantity={quantity}
           onDecrement={onDecrement}
           onIncrement={onIncrement}
+          decrementTestId="decrement-quantity"
+          quantityTestId="item-quantity"
+          incrementTestId="increment-quantity"
         />
         <p className="cart-total-price">
-          <FaRupeeSign /> {totalCost}/-
+          <FaRupeeSign /> {cost * quantity}/-
         </p>
         <button
           className="remove-button"

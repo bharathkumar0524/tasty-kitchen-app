@@ -73,7 +73,7 @@ class Carousel extends Component {
   }
 
   renderLoader = () => (
-    <div testid="loader" className="home-carousel-loader">
+    <div testid="restaurants-offers-loader" className="home-carousel-loader">
       <Loader type="TailSpin" color="#F7931E" height={30} width={30} />
     </div>
   )

@@ -59,6 +59,8 @@ class Cart extends Component {
           return eachCartItem
         }),
       }))
+    } else {
+      this.deleteCartItem(id)
     }
   }
 
@@ -76,7 +78,7 @@ class Cart extends Component {
           this.renderEmptyCartView()
         ) : (
           <>
-            <div className="cart-container" testid="cartItem">
+            <div className="cart-container">
               <div className="cart-container-content">
                 <div className="cart-content-container">
                   <div className="cart-headings-container">
@@ -98,7 +100,7 @@ class Cart extends Component {
                   ))}
                 </ul>
                 <hr className="cart-horizontal-line" />
-                <CartTotal cartList={cartList} />
+                <CartTotal />
               </div>
             </div>
             <Footer />

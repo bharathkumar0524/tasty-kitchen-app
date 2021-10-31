@@ -135,7 +135,7 @@ class RestaurantDetails extends Component {
               alt="restaurant"
               className="restaurant-detail-image"
             />
-            <div>
+            <ul className="restaurant-details-list-container">
               <h1 className="restaurant-details-heading">{name}</h1>
               <p className="restaurant-details-cuisine">{cuisine}</p>
               <p className="restaurant-details-location">{location}</p>
@@ -160,7 +160,7 @@ class RestaurantDetails extends Component {
                   </p>
                 </div>
               </div>
-            </div>
+            </ul>
           </div>
         </div>
         <div className="restaurant-food-items-container">

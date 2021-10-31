@@ -7,21 +7,21 @@ import './index.css'
 
 const sortByOptions = [
   {
-    id: 0,
-    displayText: 'Lowest',
-    value: 'Lowest',
-  },
-  {
     id: 1,
     displayText: 'Highest',
     value: 'Highest',
+  },
+  {
+    id: 2,
+    displayText: 'Lowest',
+    value: 'Lowest',
   },
 ]
 
 class Restaurants extends Component {
   state = {
     restaurantsList: [],
-    activeSortByValue: sortByOptions[0].value,
+    activeSortByValue: sortByOptions[1].value,
     isLoading: true,
     noOfPages: 0,
     activePage: 1,
@@ -35,9 +35,10 @@ class Restaurants extends Component {
   getRestaurantsList = async () => {
     this.setState({isLoading: true})
     const {activeSortByValue, activePage, limit} = this.state
-    const offset = (activePage - 1) * limit
+    console.log(activePage)
+    const offsetValue = (activePage - 1) * limit
     const jwtToken = Cookies.get('jwt_token')
-    const apiUrl = `https://apis.ccbp.in/restaurants-list?offset=${offset}&limit=${limit}&sort_by_rating=${activeSortByValue}`
+    const apiUrl = `https://apis.ccbp.in/restaurants-list?&offset=${offsetValue}&limit=9&sort_by_rating=${activeSortByValue}`
     const options = {
       headers: {
         Authorization: `Bearer ${jwtToken}`,
@@ -78,9 +79,8 @@ class Restaurants extends Component {
   }
 
   onChangeSortBy = event => {
-    const {activePage} = this.state
     this.setState(
-      {activeSortByValue: event.target.value, activePage},
+      {activeSortByValue: event.target.value, activePage: 1},
       this.getRestaurantsList,
     )
   }
@@ -110,7 +110,7 @@ class Restaurants extends Component {
   }
 
   renderLoader = () => (
-    <div testid="loader" className="home-carousel-loader">
+    <div testid="restaurants-list-loader" className="home-carousel-loader">
       <Loader type="TailSpin" color="#F7931E" height={30} width={30} />
     </div>
   )

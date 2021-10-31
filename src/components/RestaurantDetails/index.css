@@ -57,6 +57,11 @@
     margin-right: 20px;
   }
 }
+.restaurant-details-list-container {
+  list-style-type: none;
+  padding-left: 0px;
+  margin-left: 0px;
+}
 .restaurant-details-heading {
   font-family: Roboto;
   font-style: normal;

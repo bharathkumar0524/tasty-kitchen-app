@@ -26,12 +26,16 @@ const RestaurantsList = props => {
         >
           <RiArrowDropLeftLine className="pagination-arrow-icon" />
         </button>
-        <h1
-          testid="active-page-number"
-          className="pagination-active-page-number"
-        >
-          {activePage} of {noOfPages}
-        </h1>
+        <div className="active-pagination-container">
+          <h1
+            testid="active-page-number"
+            className="pagination-active-page-number"
+          >
+            {activePage}
+          </h1>
+          <span className="pagination-active-page-number"> of {noOfPages}</span>
+        </div>
+
         <button
           testid="pagination-right-button"
           className="pagination-button"

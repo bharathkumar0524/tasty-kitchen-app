@@ -65,7 +65,10 @@
     width: 96%;
   }
 }
-
+.cart-grand-total-container {
+  display: flex;
+  align-items: center;
+}
 .order-button {
   display: flex;
   flex-direction: column;

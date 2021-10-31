@@ -3,8 +3,17 @@ import {BiRupee} from 'react-icons/bi'
 
 import './index.css'
 
-const CartTotal = props => {
-  const {cartList} = props
+const getCartListFromLocalStorage = () => {
+  const stringifiedCartList = localStorage.getItem('cartData')
+  const parsedCartList = JSON.parse(stringifiedCartList)
+  if (parsedCartList === null) {
+    return []
+  }
+  return parsedCartList
+}
+
+const CartTotal = () => {
+  const cartList = getCartListFromLocalStorage()
   let totalOrderCost = 0
   cartList.forEach(eachCartItem => {
     totalOrderCost += eachCartItem.cost * eachCartItem.quantity
@@ -17,8 +26,7 @@ const CartTotal = props => {
           <h1 className="order-total-heading">Order Total:</h1>
           <div className="total-container">
             <p testid="total-price" className="total">
-              <BiRupee />
-              {totalOrderCost}
+              <BiRupee /> {totalOrderCost}
             </p>
           </div>
         </div>

@@ -1,8 +1,9 @@
-import './index.css'
 import {Component} from 'react'
-import {BsPlusSquare, BsDashSquare} from 'react-icons/bs'
+
 import {ImStarFull} from 'react-icons/im'
 import {FaRupeeSign} from 'react-icons/fa'
+import Counter from '../Counter'
+import './index.css'
 
 class FoodItem extends Component {
   state = {quantity: 0}
@@ -81,35 +82,14 @@ class FoodItem extends Component {
               Add
             </button>
           ) : (
-            <div className="cart-quantity-container">
-              <button
-                testid="decrement-count"
-                onClick={this.onDecreaseQuantity}
-                type="button"
-                className="quantity-controller-button"
-              >
-                <BsDashSquare
-                  className="quantity-controller-icon"
-                  color="#52606D"
-                  size={12}
-                />
-              </button>
-              <p testid="active-count" className="cart-quantity">
-                {quantity}
-              </p>
-              <button
-                testid="increment-count"
-                onClick={this.onAddQuantity}
-                type="button"
-                className="quantity-controller-button"
-              >
-                <BsPlusSquare
-                  className="quantity-controller-icon"
-                  color="#52606D"
-                  size={12}
-                />
-              </button>
-            </div>
+            <Counter
+              quantity={quantity}
+              onDecrement={this.onDecreaseQuantity}
+              onIncrement={this.onAddQuantity}
+              decrementTestId="decrement-count"
+              quantityTestId="active-count"
+              incrementTestId="increment-count"
+            />
           )}
         </div>
       </li>

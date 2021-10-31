@@ -25,8 +25,12 @@ const RestaurantCard = props => {
   ) */
 
   return (
-    <Link to={`/restaurant/${id}`} className="restaurant-link-item">
-      <li testid="restaurant-card-item" className="restaurant-card-item">
+    <Link
+      to={`/restaurant/${id}`}
+      className="restaurant-link-item"
+      testid="restaurant-item"
+    >
+      <li className="restaurant-card-item">
         <img
           src={imageUrl}
           alt="restaurant-item"

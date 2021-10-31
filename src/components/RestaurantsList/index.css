@@ -17,6 +17,11 @@
     justify-content: space-between;
   }
 }
+.active-pagination-container {
+  display: flex;
+  margin-left: 10px;
+  margin-right: 10px;
+}
 
 .pagination {
   display: flex;
@@ -64,8 +69,6 @@
   line-height: 24px;
   text-align: center;
   color: #334155;
-  margin-left: 10px;
-  margin-right: 10px;
 }
 @media screen and (min-width: 768px) {
   .pagination-active-page-number {
